@@ -10,7 +10,7 @@ class RemotePersonController extends Controller
 {
     public function index(Group $group, \Microsoft\Graph\Graph $client): Response {
 
-        $accessToken = config('pretend-this-is-always-valid');
+        $accessToken = // pretend-this-has-valid origin
         
         /** @var \Microsoft\Graph\Model\User[] $people */
         $users = $client->createRequest('GET', '/people?$filter=groupId eq ' . $group->remote_id) // pretend this is a valid filter

@@ -32,17 +32,18 @@ class \App\Clients\Google implements ClientInterface { ... }
 ----
 
 But, our customer using Google people uses Licences from AFAS
-We actually don't have a case for Google Licenses at the moment
+We actually don't have a case for Google Licenses at the moment.
+
+So, we split them up per subject 
 
 
 ```php
 interface RemotePersonClientInterface {   
      /** @return App\Dto\License[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): Collection;
+    public function getPeopleInGroup(string $accessToken, Group $group): Collection;
 }
 
 interface RemoteLicensesClientInterface {
-   
      /** @return App\Dto\License[] $licenses */
     public function getLicensesForPerson(string $accessToken, Person $person): Collection;
 }

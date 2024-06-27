@@ -1,0 +1,2 @@
+
+Adaptable code

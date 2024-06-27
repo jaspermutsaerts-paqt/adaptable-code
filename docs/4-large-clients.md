@@ -51,7 +51,7 @@ class Microsoft implements
     
     public function updateLicense(string $accessToken, App\Dto\License $license): boo {
         ...
-    }l
+    }
           
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool {
         ...
@@ -62,7 +62,6 @@ class Microsoft implements
     }
 }
 ```
-
 
 You probably want to separate them as such:
 
@@ -125,7 +124,7 @@ class LicenseClient implements
     
     public function updateLicense(string $accessToken, App\Dto\License $license): boo {
         ...
-    }l
+    }
           
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool {
         ...
