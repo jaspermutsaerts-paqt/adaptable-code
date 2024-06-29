@@ -2,7 +2,7 @@ name: Publish docs via GitHub Pages
 on:
   push:
     branches:
-      - publish-docs # while testing
+      - main # while testing
 
 jobs:
   build:
