@@ -1,29 +1,5 @@
 
-```php
-namespace App\Controllers;
-
-use App\Models\Group;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
-
-class RemotePersonController extends Controller
-{
-    public function index(Group $group, \Microsoft\Graph\Graph $client): Response {
-
-        $accessToken = // pretend-this-has-valid origin
-        
-        /** @var \Microsoft\Graph\Model\User[] $people */
-        $users = $client->createRequest('GET', '/people?$filter=groupId eq ' . $group->remote_id) // pretend this is a valid filter
-            ->setAccessToken($accessToken)
-            ->setReturnType(\Microsoft\Graph\Model\User::class)
-            ->execute();
-
-        $people = collect($people)->pluck('displayName', 'id');
-
-        return response()->view('people.index', ['people' => $people]);
-    }
-}
-```
+Perhaps you prefer to wrap the MS client because you want it to reflect our use case more instead of reflect a Graph API client.
 
 ```php
 class RemotePersonController extends Controller
@@ -44,8 +20,7 @@ class RemotePersonController extends Controller
 
 
 ----
-
-Google is introduced, and (for this example) might not call them users.
+But now, a requirement for connecting to Google instead of Microsoft is introduced, and (for this example) Google might not call them users.
 Since we're looking voor people not users we can make the interfaces use Person instead of User.
 We don't need the conversion of users to people in the controller anymore, since the clients are responsible for that
 

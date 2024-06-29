@@ -1,4 +1,6 @@
 
+# Example case
+
 Let's say you have a view that will show you some people from a remote source filtered by some scope (a group, for this example).  
 These people come from Microsoft.
 
@@ -30,3 +32,5 @@ class RemotePersonController extends Controller
 ```
 
 What can you think of that you would do differently than this implementation?
+  
+# Shoot.

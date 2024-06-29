@@ -34,7 +34,7 @@ class \App\Clients\Google implements ClientInterface { ... }
 But, our customer using Google people uses Licences from AFAS
 We actually don't have a case for Google Licenses at the moment.
 
-So, we split them up per subject 
+So, we split them up per subject: 
 
 
 ```php
