@@ -2,9 +2,9 @@ Using an interface makes it easier to make tests independent of remote connectio
 You could mock of course there are some disadvantages
 
 - Each test (case) is responsible for setting up both expectations and return values
-
-- Too many mocks might lead to a test only testing itself instead of production code
-{Try to think of an example here}
+- It might accept incorrect arguments or return incorrect 
+- Too many mocking might lead to a test only testing itself instead of production code
+{TODO: Try to think of a concrete example here}
 
 ```php
 class RemotePersonControllerTest extends TestCase {
@@ -25,8 +25,8 @@ class RemotePersonControllerTest extends TestCase {
 
 
 
-Test doubles reflect are not mocks, they "actually" work, but usually in a simplified case.
-We usually (incorrectly) call them `Fake`, but it is also common to namespace or prefix it as `InMemory`, `Database` (as opposed to remote) 
+Test doubles are not mocks, they "actually" work, but usually in a simplified case.
+We (in Team Falcon) usually (incorrectly) call them `Fake`, but it is also common to namespace or prefix it as `InMemory`, `Database` (as opposed to remote) 
 
 
 ```php
@@ -50,7 +50,6 @@ class ListPeopleClient implements ListRemotePeopleClient {
         $remotePeople = $localPeople->map($this->someTransformation(...)); // still just go with it
 
         return $remotePeople;
-        
     }
 } 
 ```
@@ -73,8 +72,7 @@ class ListLicenceClient implements ListRemoteLicenseClient {
         
         $localLicenses = $person->licenses;       
         
-        $remoteLicenses = $localLicenses->map($this->someTransformation(...)); // still just go with it
-
+        $remoteLicenses = $localLicenses->map($this->someTransformation(...));
         return $remoteLicenses;
         
     }

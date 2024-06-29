@@ -3,10 +3,10 @@ nav:
   - Home: 0-index.md
   - Look at this: 0-look-at-this.md
   - First separation: 1-first-separation.md
-  - 2: 2-separate-interfaces-subject.md
-  - 3: 3-separate-interfaces-functionality.md
-  - 4: 4-large-clients.md
-  - 10: 10-mocks-vs-test-doubles.md
+  - Second separation: 2-separate-interfaces-subject.md
+  - Complete separation: 3-separate-interfaces-functionality.md
+  - Seperate implementation: 4-large-clients.md
+  - Use in testing: 10-mocks-vs-test-doubles.md
   - 11: 11-mutability-doubles.md
 
 
