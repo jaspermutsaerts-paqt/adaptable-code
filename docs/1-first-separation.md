@@ -12,7 +12,7 @@ class RemotePersonController extends Controller
         $users = $client->listUsersInGroup($accessToken, $group);
         $people = $users->pluck('displayName', 'id');
 
-        return response()->view('people.index', ['people' => $people]);
+        return response()->view('person.index', ['people' => $people]);
     }
 }
 ```
@@ -31,7 +31,7 @@ class RemotePersonController extends Controller
 
         $people = $client->listPeopleInGroup($accessToken, $group);
 
-        return response()->view('people.index', ['people' => $people]);
+        return response()->view('person.index', ['people' => $people]);
     }
 }
 ```

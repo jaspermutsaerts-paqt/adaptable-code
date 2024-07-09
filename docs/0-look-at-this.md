@@ -18,15 +18,15 @@ class RemotePersonController extends Controller
 
         $accessToken = // pretend-this-has-valid origin
         
-        /** @var \Microsoft\Graph\Model\User[] $people */
+        /** @var \Microsoft\Graph\Model\User[] $users */
         $users = $client->createRequest('GET', '/people?$filter=groupId eq ' . $group->remote_id) // pretend this is a valid filter
             ->setAccessToken($accessToken)
             ->setReturnType(\Microsoft\Graph\Model\User::class)
             ->execute();
 
-        $people = collect($people)->pluck('displayName', 'id');
+        $people = collect($users)->pluck('displayName', 'id');
 
-        return response()->view('people.index', ['people' => $people]);
+        return response()->view('person.index', ['people' => $people]);
     }
 }
 ```
