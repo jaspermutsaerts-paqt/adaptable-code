@@ -16,7 +16,7 @@ class RemotePersonController extends Controller
 {
     public function index(Group $group, \Microsoft\Graph\Graph $client): Response {
 
-        $accessToken = // pretend-this-has-valid origin
+        $accessToken = 'totally-valid-token'; // pretend-this-has-valid origin
         
         /** @var \Microsoft\Graph\Model\User[] $users */
         $users = $client->createRequest('GET', '/people?$filter=groupId eq ' . $group->remote_id) // pretend this is a valid filter
@@ -31,6 +31,6 @@ class RemotePersonController extends Controller
 }
 ```
 
-What can you think of that you would do differently than this implementation?
+What can you think of that you would do differently to this implementation?
   
 # Shoot.

@@ -8,6 +8,8 @@ nav:
   - Separate implementation: 4-large-clients.md
   - "Testing: Mocks vs test doubles": 10-mocks-vs-test-doubles.md
   - "Testing: Support mutability in test doubles": 11-mutability-doubles.md
+  - "Final thoughts": 12-outro.md
+
 
 
 theme:
