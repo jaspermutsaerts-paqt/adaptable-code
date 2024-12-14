@@ -1,12 +1,10 @@
 Adaptable code
 ----
 
-The docs under [/docs](./docs/index.md) in this repository are meant to be served by [MKDocs](https://www.mkdocs.org/), But they are
-perfectly readable as regular markdown.
+https://jaspermutsaerts-paqt.github.io/adaptable-code/
 
-You'll miss navigation, but the numeric prefixes of the names should give you an idea of the correct order.
 
-## Install MkDocs
+## Install MkDocs locally
 
 ### Requirements
 
@@ -17,7 +15,7 @@ You'll miss navigation, but the numeric prefixes of the names should give you an
 https://www.mkdocs.org/user-guide/installation/
 
 ```shell
-pip install mkdocs
+pip install mkdocs locally
 ```
 
 ## Serve docs

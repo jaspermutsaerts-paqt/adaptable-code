@@ -1,4 +1,5 @@
 site_name: Adaptable code
+site_dir: build
 nav:
   - Home: index.md
   - Look at this: 0-look-at-this.md
