@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Testing: Support mutability in test doubles - Adaptable code</title>
+    <title>Testing: Support mutability in fakes - Adaptable code</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Testing: Support mutability in test doubles";
-        var mkdocs_page_input_path = "11-mutability-doubles.md";
+        var mkdocs_page_name = "Testing: Support mutability in fakes";
+        var mkdocs_page_input_path = "11-mutability-fakes.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -65,11 +65,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-test-doubles/">Testing: Mocks vs test doubles</a>
+                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-fakes/">Testing: Mocks vs Fakes</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Testing: Support mutability in test doubles</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Testing: Support mutability in fakes</a>
                 </li>
               </ul>
               <ul>
@@ -90,7 +90,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Testing: Support mutability in test doubles</li>
+      <li class="breadcrumb-item active">Testing: Support mutability in fakes</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -99,10 +99,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Previous example will not work correctly when we expect an update to also be persisted on the remote, but shouldn't change anything localy </p>
+                <p>Previous example will not work correctly when we expect an update to also be persisted on the remote, but shouldn't change anything locally.</p>
+<p>Now, what if you want things to be persisted, at least during your tests.</p>
 <p><strong>Sorry, Not ready</strong></p>
 <pre><code class="language-php">
-namespace \App\Clients\Database;
+namespace \App\Clients\InMemory;
 
 class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonClient {
 
@@ -143,7 +144,7 @@ class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonC
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../10-mocks-vs-test-doubles/" class="btn btn-neutral float-left" title="Testing: Mocks vs test doubles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../10-mocks-vs-fakes/" class="btn btn-neutral float-left" title="Testing: Mocks vs Fakes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../12-outro/" class="btn btn-neutral float-right" title="Final thoughts">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -167,7 +168,7 @@ class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonC
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../10-mocks-vs-test-doubles/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../10-mocks-vs-fakes/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../12-outro/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -65,11 +65,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-test-doubles/">Testing: Mocks vs test doubles</a>
+                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-fakes/">Testing: Mocks vs Fakes</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../11-mutability-doubles/">Testing: Support mutability in test doubles</a>
+                <li class="toctree-l1"><a class="reference internal" href="../11-mutability-fakes/">Testing: Support mutability in fakes</a>
                 </li>
               </ul>
               <ul>
@@ -109,6 +109,7 @@
 
     public function store(Request $request, RemotePersonClientInterface $client): Response {
 
+        $accessToken = ...
         $licenseDto = $this-&gt;someTransformation($request); // just go with it
         ...
         $license = $client-&gt;createLicence($accessToken, $licenseDto);
@@ -126,9 +127,10 @@
 
     public function createPerson(string $accessToken, App\Dto\Person $person): Person;
 
+    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;   
+
     public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
 
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;     
 
     /** @return App\Dto\Person[] $people */
     public function getPeopleInGroup(string $accessToken, Group $group): Collection;
@@ -139,9 +141,9 @@ interface RemoteLicensesClientInterface {
 
     public function createLicense(string $accessToken, App\Dto\License $license): License;
 
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
-
     public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+
+    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;    
 
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
 
@@ -152,7 +154,7 @@ interface RemoteLicensesClientInterface {
 }
 </code></pre>
 <p>But, when we want to implement those methods, we realize we don't want to support CRUD methods for AFAS Licences, nor for Google People.
-All customers using those handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.</p>
+All customers using those, handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.</p>
 <p>We can split up the interfaces for their specific use cases</p>
 <pre><code class="language-php">interface ListRemotePeopleClientInterface { 
 
@@ -170,18 +172,18 @@ interface EditRemotePersonClientInterface {
 
     public function createPerson(string $accessToken, App\Dto\Person $person): Person;
 
-    public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
+    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;
 
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;    
+    public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
 }
 
 interface EditRemoteLicenseClientInterface {
 
     public function createLicense(string $accessToken, App\Dto\License $license): License;
 
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
-
     public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+
+    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
 
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
 
