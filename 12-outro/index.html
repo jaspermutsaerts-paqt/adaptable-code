@@ -75,6 +75,12 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Final thoughts</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#when-do-you-introduce-an-interface">When do you introduce an interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#when-do-you-split-up-your-interface">When do you split up your interface?</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -101,8 +107,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="conclusion">Conclusion</h2>
-<p>...</p>
+                <h1 id="conclusion">Conclusion</h1>
+<h2 id="summary">Summary</h2>
+<h2 id="when-do-you-introduce-an-interface">When do you introduce an interface</h2>
+<p>Always.<br />
+No, not really. It depends on how interchangeable it likely will be.</p>
+<p><code>&lt;examples here&gt;</code></p>
+<h2 id="when-do-you-split-up-your-interface">When do you split up your interface?</h2>
+<ul>
+<li>Decide whether all implementations will definitely need to implement all methods, if not: split up.</li>
+<li>Are you sure the interface serves a single purpose, or is it just that your current intended implementation does all
+  these things</li>
+</ul>
               
             </div>
           </div><footer>
