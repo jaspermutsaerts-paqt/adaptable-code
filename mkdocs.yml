@@ -7,8 +7,8 @@ nav:
   - Second separation: 2-separate-interfaces-subject.md
   - Complete separation: 3-separate-interfaces-functionality.md
   - Separate implementation: 4-large-clients.md
-  - "Testing: Mocks vs test doubles": 10-mocks-vs-test-doubles.md
-  - "Testing: Support mutability in test doubles": 11-mutability-doubles.md
+  - "Testing: Mocks vs Fakes": 10-mocks-vs-fakes.md
+  - "Testing: Support mutability in fakes": 11-mutability-fakes.md
   - "Final thoughts": 12-outro.md
 
 

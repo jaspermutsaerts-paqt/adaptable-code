@@ -15,7 +15,7 @@ https://jaspermutsaerts-paqt.github.io/adaptable-code/
 https://www.mkdocs.org/user-guide/installation/
 
 ```shell
-pip install mkdocs locally
+pip install mkdocs
 ```
 
 ## Serve docs

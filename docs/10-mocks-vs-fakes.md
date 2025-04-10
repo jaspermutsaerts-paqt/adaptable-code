@@ -1,5 +1,5 @@
-Using an interface makes it easier to make tests independent of remote connections.
-You could mock of course there are some disadvantages
+Using an interface makes it easier to make tests independent of remote connections.  
+You could mock dependencies of course, but there are some disadvantages:
 
 - Each test (case) is responsible for setting up both expectations and return values
 - It might accept incorrect arguments or return incorrect 
@@ -24,10 +24,11 @@ class RemotePersonControllerTest extends TestCase {
 ```
 
 
+Fakes are another type of test doubles. They are not mocks, but they "actually" work, but usually in a simplified case.
+In teams I've worked with, we usually called them `Fake`, but it is also common to namespace or prefix it as `InMemory`, or even `Database`.
 
-Test doubles are not mocks, they "actually" work, but usually in a simplified case.
-We (in Team Falcon) usually (incorrectly) call them `Fake`, but it is also common to namespace or prefix it as `InMemory`, `Database` (as opposed to remote) 
 
+This example just lists the people, or licenses already stored. 
 
 ```php
 

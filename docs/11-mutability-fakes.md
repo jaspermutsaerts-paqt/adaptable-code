@@ -1,10 +1,12 @@
-Previous example will not work correctly when we expect an update to also be persisted on the remote, but shouldn't change anything localy 
+Previous example will not work correctly when we expect an update to also be persisted on the remote, but shouldn't change anything locally.
+
+Now, what if you want things to be persisted, at least during your tests.
 
 
 **Sorry, Not ready**
 ```php
 
-namespace \App\Clients\Database;
+namespace \App\Clients\InMemory;
 
 class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonClient {
 

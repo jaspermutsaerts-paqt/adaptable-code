@@ -11,6 +11,7 @@ class RemoteLicenseController extends Controller
     
     public function store(Request $request, RemotePersonClientInterface $client): Response {
 
+        $accessToken = ...
         $licenseDto = $this->someTransformation($request); // just go with it
         ...
         $license = $client->createLicence($accessToken, $licenseDto);
@@ -31,9 +32,10 @@ interface RemotePersonClientInterface {
      
     public function createPerson(string $accessToken, App\Dto\Person $person): Person;
     
+    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;   
+      
     public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
     
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;     
     
     /** @return App\Dto\Person[] $people */
     public function getPeopleInGroup(string $accessToken, Group $group): Collection;
@@ -44,9 +46,9 @@ interface RemoteLicensesClientInterface {
 
     public function createLicense(string $accessToken, App\Dto\License $license): License;
     
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
-    
     public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+    
+    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;    
           
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
     
@@ -58,7 +60,7 @@ interface RemoteLicensesClientInterface {
 ```
 
 But, when we want to implement those methods, we realize we don't want to support CRUD methods for AFAS Licences, nor for Google People.
-All customers using those handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.
+All customers using those, handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.
 
 We can split up the interfaces for their specific use cases
 
@@ -79,18 +81,18 @@ interface EditRemotePersonClientInterface {
 
     public function createPerson(string $accessToken, App\Dto\Person $person): Person;
     
+    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;
+        
     public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
-    
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;    
 }
 
 interface EditRemoteLicenseClientInterface {
 
     public function createLicense(string $accessToken, App\Dto\License $license): License;
     
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
-    
     public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+    
+    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
           
     public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
     
