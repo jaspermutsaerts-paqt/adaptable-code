@@ -1,15 +1,15 @@
 <?php
 
-namespace Cards;
+namespace App\Cards;
 
-use NumberGenerators\RandomNumberGeneratorInterface;
 
-class CardDeck
+use App\Cards\NumberGenerators\RandomNumberGeneratorInterface;
+
+class Deck
 {
     private array $cards = [];
 
     public function __construct(
-
         private readonly RandomNumberGeneratorInterface $randomNumberGenerator,
     )
     {
@@ -30,16 +30,16 @@ class CardDeck
         return $card;
     }
 
-    public function deal()
+    public function deal(): void
     {
         $this->cards = [];
         $suits = ['❤️', '♣️', '♦️', '♠️'];
-        $faceCards = ['J', 'Q', 'K', 'A'];
+        $values = ['A',  'J', 'Q', 'K'];;
 
         foreach ($suits as $suit) {
-            foreach (range(2, 14) as $value) {
-                $value = $value > 10 ? $faceCards[$value - 11] : $value;
-                $this->cards[] = new Card($suit, $value);
+            foreach ($values as $value) {
+                $this->cards[] = new Card($suit, (string)$value);
             }
         }
     }
+}

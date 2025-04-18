@@ -1,6 +1,6 @@
 <?php
 
-namespace NumberGenerators;
+namespace App\Cards\NumberGenerators;
 
 interface RandomNumberGeneratorInterface
 {

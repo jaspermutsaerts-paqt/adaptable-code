@@ -1,8 +1,6 @@
 <?php
 
-namespace NumberGenerators;
-
-use NumberGenerators\RandomNumberGeneratorInterface;
+namespace App\Cards\NumberGenerators;
 
 class XkcdNumberGenerator implements RandomNumberGeneratorInterface
 {
