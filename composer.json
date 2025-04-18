@@ -1,0 +1,21 @@
+{
+    "name": "jaspermutsaerts/adaptable-code",
+    "description": "Adaptable Code",
+    "type": "project",
+    "homepage": "https://jaspermutsaerts-paqt.github.io/adaptable-code/",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jasper Mutsaerts",
+            "email": "jasper.mutsaerts@paqt.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2"
+    }
+}
