@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Cards;
 
 use Countable;
@@ -23,7 +25,6 @@ class Hand implements Countable
         return array_reduce($this->cards, function (int $total, Card $card) use ($valueMap) {
             return $total + $valueMap[$card->id];
         }, 0);
-
     }
 
     public function __toString(): string
@@ -35,5 +36,4 @@ class Hand implements Countable
     {
         return count($this->cards);
     }
-
 }

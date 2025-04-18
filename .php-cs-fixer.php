@@ -5,12 +5,12 @@ declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->path([
-        '/^src/',
+        '/^app/',
         '/^database/',
         '/^routes/',
         '/^tests/',
         '/^lang/',
-                   '/^config/',
+       '/^config/',
     ]);
 
 return (new PhpCsFixer\Config())

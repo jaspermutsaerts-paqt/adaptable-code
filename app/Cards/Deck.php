@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Cards;
 
 use App\Cards\NumberGenerators\RandomNumberGeneratorInterface;
@@ -27,7 +29,6 @@ class Deck
         return $card;
     }
 
-
     private function createCards(): void
     {
         $this->cards = [];
@@ -36,7 +37,7 @@ class Deck
 
         foreach ($suits as $suit) {
             foreach ($cardIds as $cardId) {
-                $this->cards[] = new Card($suit, (string)$cardId);
+                $this->cards[] = new Card($suit, (string) $cardId);
             }
         }
         // To support the example in the presentation, we do not shuffle
