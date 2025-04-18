@@ -6,7 +6,8 @@ namespace App\Cards;
 
 enum TurnResult
 {
-    case Win;
-    case Lose;
+    case StrongBlackJack;
+    case BlackJack;
     case Stand;
+    case Bust;
 }

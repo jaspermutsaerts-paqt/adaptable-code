@@ -14,6 +14,6 @@ readonly class Card
 
     public function __toString(): string
     {
-        return $this->suit->value . $this->id;
+        return $this->suit->value . ' ' . $this->id;
     }
 }

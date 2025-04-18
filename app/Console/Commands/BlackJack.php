@@ -6,7 +6,9 @@ namespace App\Console\Commands;
 
 use App\Cards\Card;
 use App\Cards\Deck;
+use App\Cards\GameOutcome;
 use App\Cards\Hand;
+use App\Cards\Rules\DetermineGameOutcomeInterface;
 use App\Cards\Strategies\DealerShouldHitStrategy;
 use App\Cards\Strategies\HitCardStrategyInterface;
 use App\Cards\Strategies\PlayerShouldHitStrategy;
@@ -21,71 +23,55 @@ class BlackJack extends Command
 
     public function handle(
         Deck $deck,
+        DetermineGameOutcomeInterface $outcomeDeterminer,
         PlayerShouldHitStrategy $playerHitStrategy,
         DealerShouldHitStrategy $dealerHitStrategy
     ) {
         $playerHitStrategy->setOutput($this->output);
 
         $this->getOutput()->title('Black Jack');
-        $this->comment('In this simple implementation Aces are only worth 1, not 11.');
         $this->newLine();
 
         $playerHand = new Hand();
         $dealerHand = new Hand();
 
-        $player = $this->playTurn($deck, $playerHand, $playerHitStrategy);
-        if ($player === TurnResult::Win) {
-            $this->info('Blackjack! You win!');
+        $playerResult = $this->playTurn('Player', $deck, $playerHand, $playerHitStrategy);
+
+        // Dealer doesn't play when player busts
+        if ($playerResult === TurnResult::Bust) {
+            $this->determineWinner($outcomeDeterminer, $playerResult, $playerHand, TurnResult::Stand, $dealerHand);
 
             return 0;
         }
-        if ($player === TurnResult::Lose) {
-            $this->info($playerHand->getValue() . ' is too high. You lose!');
 
-            return 0;
-        }
-
-        $this->info('Player stands');
-        $this->newLine();
         $this->info("Dealer's turn.");
-        // If reach here, dealer plays
-
-        $dealer = $this->playTurn($deck, $dealerHand, $dealerHitStrategy);
-
-        if ($dealer === TurnResult::Win) {
-            $this->info('Blackjack! You lose!');
-
-            return 0;
-        }
-        if ($dealer === TurnResult::Lose) {
-            $this->info($playerHand->getValue() . ' is too high. You win!');
-
-            return 0;
-        }
-
-        $this->info('Dealer stands');
-
-        if ($playerHand->getValue() > $dealerHand->getValue()) {
-            $this->info('You win!');
-
-            return 0;
-        }
-
-        $this->info('You lose!');
+        $dealerResult = $this->playTurn('Dealer', $deck, $dealerHand, $dealerHitStrategy);
+        $this->determineWinner($outcomeDeterminer, $playerResult, $playerHand, $dealerResult, $dealerHand);
 
         return 0;
     }
 
-    public function playTurn(Deck $deck, Hand $hand, HitCardStrategyInterface $continueStrategy): TurnResult
-    {
+    public function playTurn(
+        string $playerName,
+        Deck $deck,
+        Hand $hand,
+        HitCardStrategyInterface $continueStrategy
+    ): TurnResult {
         // First two cards are not optional
         $this->info('Dealing cards...');
         sleep(1); // use delays to make it feel more like something is happening
         $this->drawCard($deck, $hand);
         $this->drawCard($deck, $hand);
 
-        $this->info('Hand: ' . $hand);
-        $this->comment('Current value: ' . $hand->getValue());
+        $value = $hand->getValue();
+        $this->line('<info>Hand: ' . $hand . '</info> <comment>(' . $value . ')</comment>');
+
+        if ($value == 21) {
+            $this->newLine();
+            $this->info('BlackJack!');
+
+            return TurnResult::StrongBlackJack;
+        }
 
         while ($continueStrategy->shouldHitCard($hand)) {
             $this->info('Drawing card...');
@@ -93,24 +79,26 @@ class BlackJack extends Command
             $card = $this->drawCard($deck, $hand);
             $this->info('Card drawn: ' . $card);
             sleep(1);
-            $this->info('Hand: ' . $hand);
             $value = $hand->getValue();
+            $this->line('<info>Hand: ' . $hand . '</info> <comment>(' . $value . ')</comment>');
             sleep(1);
 
-            if ($value == 21) {
-                $this->newLine();
+            $this->newLine();
 
-                return TurnResult::Win;
+            if ($value == 21) {
+                $this->comment($playerName . ' has BlackJack!');
+
+                return TurnResult::BlackJack;
             }
 
             if ($value > 21) {
-                $this->newLine();
+                $this->comment($playerName . ' bust!');
 
-                return TurnResult::Lose;
+                return TurnResult::Bust;
             }
-
-            $this->comment('Current value: ' . $value);
         }
+        $this->newLine();
+        $this->info($playerName . ' stands.');
         $this->newLine();
 
         return TurnResult::Stand;
@@ -122,5 +110,28 @@ class BlackJack extends Command
         $hand->addCard($card);
 
         return $card;
+    }
+
+    public function determineWinner(
+        DetermineGameOutcomeInterface $outcomeDeterminer,
+        TurnResult $playerResult,
+        Hand $playerHand,
+        TurnResult $dealerResult,
+        Hand $dealerHand,
+    ): void {
+        $outcome = $outcomeDeterminer->determineGameOutcome(
+            $playerResult,
+            $playerHand->getValue(),
+            $dealerResult,
+            $dealerHand->getValue(),
+        );
+
+        $message = match($outcome) {
+            GameOutcome::PlayerWins => 'You win!',
+            GameOutcome::DealerWins => 'You Lose!',
+            GameOutcome::Tie        => 'Tie!',
+        };
+
+        $this->info($message);
     }
 }
