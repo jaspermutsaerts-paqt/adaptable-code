@@ -116,7 +116,7 @@
 </code></pre>
 <hr />
 <p>But now, let's say a requirement for connecting to Google instead of Microsoft is introduced, and (for this example) Google might not call them users.
-Since we're looking for people not users we can make interfaces use Person instead of User.
+Since we're looking for people not users, we can make interfaces use Person instead of User.
 We don't need the conversion of users to people in the controller anymore, since the clients are responsible for that</p>
 <pre><code class="language-php">class RemotePersonController extends Controller
 {
@@ -130,8 +130,8 @@ We don't need the conversion of users to people in the controller anymore, since
 </code></pre>
 <pre><code class="language-php">interface ClientInterface {
 
-    /** @return Collection&lt;App\Dto\Person&gt; $people */
-    public function listPeopleInGroup(string $accessToken, Group $group): Collection;
+    /** @return PersonDto[] $people */
+    public function listPeopleInGroup(string $accessToken, Group $group): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }
