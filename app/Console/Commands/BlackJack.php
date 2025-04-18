@@ -10,6 +10,7 @@ use App\Cards\Hand;
 use App\Cards\Strategies\DealerShouldHitStrategy;
 use App\Cards\Strategies\HitCardStrategyInterface;
 use App\Cards\Strategies\PlayerShouldHitStrategy;
+use App\Cards\TurnResult;
 use Illuminate\Console\Command;
 
 class BlackJack extends Command
@@ -33,15 +34,15 @@ class BlackJack extends Command
         $dealerHand = new Hand();
 
         $player = $this->playTurn($deck, $playerHand, $playerHitStrategy);
-        if ($player === true) {
+        if ($player === TurnResult::Win) {
             $this->info('Blackjack! You win!');
 
             return 0;
         }
-        if ($player === false) {
+        if ($player === TurnResult::Lose) {
             $this->info($playerHand->getValue() . ' is too high. You lose!');
 
-            return 1;
+            return 0;
         }
 
         $this->info('Player stands');
@@ -50,12 +51,13 @@ class BlackJack extends Command
         // If reach here, dealer plays
 
         $dealer = $this->playTurn($deck, $dealerHand, $dealerHitStrategy);
-        if ($dealer === true) {
+
+        if ($dealer === TurnResult::Win) {
             $this->info('Blackjack! You lose!');
 
-            return 1;
+            return 0;
         }
-        if ($dealer === false) {
+        if ($dealer === TurnResult::Lose) {
             $this->info($playerHand->getValue() . ' is too high. You win!');
 
             return 0;
@@ -74,7 +76,7 @@ class BlackJack extends Command
         return 0;
     }
 
-    public function playTurn(Deck $deck, Hand $hand, HitCardStrategyInterface $continueStrategy): ?bool
+    public function playTurn(Deck $deck, Hand $hand, HitCardStrategyInterface $continueStrategy): TurnResult
     {
         // First two cards are not optional
         $this->info('Dealing cards...');
@@ -98,20 +100,20 @@ class BlackJack extends Command
             if ($value == 21) {
                 $this->newLine();
 
-                return true;
+                return TurnResult::Win;
             }
 
             if ($value > 21) {
                 $this->newLine();
 
-                return false;
+                return TurnResult::Lose;
             }
 
             $this->comment('Current value: ' . $value);
         }
         $this->newLine();
 
-        return null;
+        return TurnResult::Stand;
     }
 
     private function drawCard(Deck $deck, Hand $hand): Card
