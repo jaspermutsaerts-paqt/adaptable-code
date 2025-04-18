@@ -2,7 +2,7 @@ Using an interface makes it easier to make tests independent of remote connectio
 You could mock dependencies of course, but there are some disadvantages:
 
 - Each test (case) is responsible for setting up both expectations and return values
-- It might accept incorrect arguments or return incorrect 
+- It might accept incorrect arguments or return incorrect data
 - Too many mocking might lead to a test only testing itself instead of production code
 {TODO: Try to think of a concrete example here}
 

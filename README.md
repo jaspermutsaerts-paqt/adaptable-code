@@ -24,6 +24,8 @@ pip install mkdocs
 mkdocs serve
 ```
 
+
+
 ## Tasks
 
 ### To Do's
@@ -33,9 +35,16 @@ mkdocs serve
 - [ ] Expand test double example, both mutable and immutable
 - [x] Address _when_ to introduce interfaces
 - [x] Address _when_ to split up interfaces or its implementations
-- [ ] Add an outro/conclusion
+- [x] Add an outro/conclusion
 
 ### Feedback
 
 - When presenting take time allow for people to read code
 - When applicable, take success of this practice in ROLAPP into account
+
+## Play Black Jack
+
+```sh
+composer install
+php artisan app:black-jack
+```
