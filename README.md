@@ -46,5 +46,5 @@ mkdocs serve
 
 ```sh
 composer install
-php artisan app:black-jack
+php artisan app:blackjack
 ```
