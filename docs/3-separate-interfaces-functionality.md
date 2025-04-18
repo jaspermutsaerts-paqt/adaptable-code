@@ -30,32 +30,32 @@ We update our client interfaces accordingly:
 ```php
 interface RemotePersonClientInterface {   
      
-    public function createPerson(string $accessToken, App\Dto\Person $person): Person;
+    public function createPerson(string $accessToken, PersonDto $person): Person;
     
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;   
+    public function updatePerson(string $accessToken, PersonDto $person): bool;   
       
-    public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
+    public function deletePerson(string $accessToken, PersonDto $person): bool;
     
     
-    /** @return App\Dto\Person[] $people */
-    public function getPeopleInGroup(string $accessToken, Group $group): Collection;
+    /** @return PersonDto[] $people */
+    public function getPeopleInGroup(string $accessToken, Group $group): array;
      
 }
 
 interface RemoteLicensesClientInterface {
 
-    public function createLicense(string $accessToken, App\Dto\License $license): License;
+    public function createLicense(string $accessToken, LicenseDto $license): License;
     
-    public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+    public function updateLicense(string $accessToken, LicenseDto $license): bool;
     
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;    
+    public function deleteLicense(string $accessToken, LicenseDto $license): bool;    
           
-    public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
+    public function assignLicenseToPerson(string $accessToken, Person $person, LicenseDto $license): bool;
     
-    public function removeLicenseFromPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
+    public function removeLicenseFromPerson(string $accessToken, Person $person, LicenseDto $license): bool;
     
-    /** @return App\Dto\License[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): Collection;
+    /** @return LicenseDto[] $licenses */
+    public function getLicensesForPerson(string $accessToken, Person $person): array;
 }
 ```
 
@@ -67,36 +67,36 @@ We can split up the interfaces for their specific use cases
 ```php
 interface ListRemotePeopleClientInterface { 
     
-    /** @return App\Dto\Person[] $people */
-    public function getPeopleInGroup(string $accessToken, Group $group): Collection;
+    /** @return PersonDto[] $people */
+    public function getPeopleInGroup(string $accessToken, Group $group): array;
 }
 
 interface ListRemoteLicensesClientInterface {
     
-    /** @return App\Dto\License[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): Collection;
+    /** @return LicenseDto[] $licenses */
+    public function getLicensesForPerson(string $accessToken, Person $person): array;
 }
 
 interface EditRemotePersonClientInterface {
 
-    public function createPerson(string $accessToken, App\Dto\Person $person): Person;
+    public function createPerson(string $accessToken, PersonDto $person): Person;
     
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool;
+    public function updatePerson(string $accessToken, PersonDto $person): bool;
         
-    public function deletePerson(string $accessToken, App\Dto\Person $person): bool;
+    public function deletePerson(string $accessToken, PersonDto $person): bool;
 }
 
 interface EditRemoteLicenseClientInterface {
 
-    public function createLicense(string $accessToken, App\Dto\License $license): License;
+    public function createLicense(string $accessToken, LicenseDto $license): License;
     
-    public function updateLicense(string $accessToken, App\Dto\License $license): bool;
+    public function updateLicense(string $accessToken, LicenseDto $license): bool;
     
-    public function deleteLicense(string $accessToken, App\Dto\License $license): bool;
+    public function deleteLicense(string $accessToken, LicenseDto $license): bool;
           
-    public function assignLicenseToPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
+    public function assignLicenseToPerson(string $accessToken, Person $person, LicenseDto $license): bool;
     
-    public function removeLicenseFromPerson(string $accessToken, Person $person, App\Dto\License $license): bool;
+    public function removeLicenseFromPerson(string $accessToken, Person $person, LicenseDto $license): bool;
 }
 ```
 Note: depending on the situation it's likely the Edit-version always needs to support Listing, so you could opt for  

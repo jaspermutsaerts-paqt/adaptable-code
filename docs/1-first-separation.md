@@ -39,8 +39,8 @@ class RemotePersonController extends Controller
 ```php
 interface ClientInterface {
 
-    /** @return Collection<App\Dto\Person> $people */
-    public function listPeopleInGroup(string $accessToken, Group $group): Collection;
+    /** @return Collection<PersonDto> $people */
+    public function listPeopleInGroup(string $accessToken, Group $group): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }

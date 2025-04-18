@@ -17,11 +17,11 @@ class RemoteLicenseController extends Controller
 ```php
 interface ClientInterface {
 
-    /** @return App\Dto\Person[] $people */
-    public function getPeopleInGroup(string $accessToken, Group $group): Collection;
+    /** @return PersonDto[] $people */
+    public function getPeopleInGroup(string $accessToken, Group $group): array;
      
-     /** @return App\Dto\License[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Group $group): Collection;
+     /** @return LicenseDto[] $licenses */
+    public function getLicensesForPerson(string $accessToken, Group $group): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }
@@ -39,13 +39,13 @@ So, we split them up per subject:
 
 ```php
 interface RemotePersonClientInterface {   
-     /** @return App\Dto\License[] $licenses */
-    public function getPeopleInGroup(string $accessToken, Group $group): Collection;
+     /** @return LicenseDto[] $licenses */
+    public function getPeopleInGroup(string $accessToken, Group $group): array;
 }
 
 interface RemoteLicensesClientInterface {
-     /** @return App\Dto\License[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): Collection;
+     /** @return LicenseDto[] $licenses */
+    public function getLicensesForPerson(string $accessToken, Person $person): array;
 }
 
 class \App\Clients\Microsoft implements RemotePersonClientInterface, RemoteLicensesClientInterface  { ... }

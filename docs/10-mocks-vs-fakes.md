@@ -40,7 +40,7 @@ class ListPeopleClient implements ListRemotePeopleClient {
     
     }
 
-    public function getPeopleInGroup(string $accessToken, Group $person): Collection {
+    public function getPeopleInGroup(string $accessToken, Group $person): array {
         Assert::eq($accessToken, $this->validAccessToken, 'Invalid access token');
         Assert::keyExists($person->some_identifier, $this->validAccessToken, 'Unknown group');
         
@@ -67,7 +67,7 @@ class ListLicenceClient implements ListRemoteLicenseClient {
     
     }
 
-    public function getLicensesForPerson(string $accessToken, Person $person): Collection {
+    public function getLicensesForPerson(string $accessToken, Person $person): array {
         Assert::eq($accessToken, $this->validAccessToken, 'Invalid access token');
         Assert::keyExists($person->some_identifier, $this->validAccessToken, 'Unknown person');
         

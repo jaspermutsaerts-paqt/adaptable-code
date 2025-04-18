@@ -20,25 +20,25 @@ class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonC
             ]);         
     }
 
-    public function getPeopleInGroup(string $accessToken, Group $group): Collection {
+    public function getPeopleInGroup(string $accessToken, Group $group): array {
         Assert::eq($accessToken, $this->validAccessToken, 'Invalid access token');
         Assert::true($this->remotePeopleInGroups->has($group->some_identifier), 'Unknown group');        
     }
     
     
-    public function createPerson(string $accessToken, App\Dto\Person $person): Person {
+    public function createPerson(string $accessToken, PersonDto $person): Person {
         ...
     }
     
-    public function deletePerson(string $accessToken, App\Dto\Person $person): bool {
+    public function deletePerson(string $accessToken, PersonDto $person): bool {
         ...
     }
     
-    public function updatePerson(string $accessToken, App\Dto\Person $person): bool {
+    public function updatePerson(string $accessToken, PersonDto $person): bool {
         ...
     }    
     
-    public function createPerson(string $accessToken, App\Dto\Person $person): Person {
+    public function createPerson(string $accessToken, PersonDto $person): Person {
         ...
     }
 } 
