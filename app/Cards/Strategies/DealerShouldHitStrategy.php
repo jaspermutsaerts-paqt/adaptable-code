@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Cards\Strategies;
 
 use App\Cards\Hand;
 
-class DealerShouldHitStrategy implements ShouldHitStrategyInterface
+class DealerShouldHitStrategy implements HitCardStrategyInterface
 {
-
-    public function shouldHit(Hand $hand): bool
+    public function shouldHitCard(Hand $hand): bool
     {
         return $hand->getValue() < 17;
     }
-
 }

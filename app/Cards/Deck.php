@@ -11,8 +11,7 @@ class Deck
 
     public function __construct(
         private readonly RandomNumberGeneratorInterface $randomNumberGenerator,
-    )
-    {
+    ) {
         $this->createCards();
     }
 
