@@ -32,10 +32,9 @@ class Deck
     private function createCards(): void
     {
         $this->cards = [];
-        $suits = ['❤️', '♣️', '♦️', '♠️'];
         $cardIds = ['A', ...range(2, 10), 'J', 'Q', 'K'];
 
-        foreach ($suits as $suit) {
+        foreach (Suit::cases() as $suit) {
             foreach ($cardIds as $cardId) {
                 $this->cards[] = new Card($suit, (string) $cardId);
             }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Cards;
 
-use Countable;
-
-class Hand implements Countable
+class Hand
 {
-    private array $cards = [];
+    public function __construct(private array $cards = [])
+    {
+    }
 
     public function addCard(Card $card): void
     {
@@ -30,10 +30,5 @@ class Hand implements Countable
     public function __toString(): string
     {
         return implode(', ', $this->cards);
-    }
-
-    public function count(): int
-    {
-        return count($this->cards);
     }
 }
