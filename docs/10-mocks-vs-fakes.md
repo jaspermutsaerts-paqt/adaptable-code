@@ -61,7 +61,7 @@ class ListPeopleClient implements ListRemotePeopleClient {
 
 namespace \App\Clients\Database;
 
-class ListLicenceClient implements ListRemoteLicenseClient {
+class ListLicenseClient implements ListRemoteLicenseClient {
 
     public function __construct(private readonly string $validAccessToken): {
     

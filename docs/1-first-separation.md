@@ -21,7 +21,7 @@ class RemotePersonController extends Controller
 
 ----
 But now, let's say a requirement for connecting to Google instead of Microsoft is introduced, and (for this example) Google might not call them users.
-Since we're looking for people not users we can make interfaces use Person instead of User.
+Since we're looking for people not users, we can make interfaces use Person instead of User.
 We don't need the conversion of users to people in the controller anymore, since the clients are responsible for that
 
 ```php
@@ -39,7 +39,7 @@ class RemotePersonController extends Controller
 ```php
 interface ClientInterface {
 
-    /** @return Collection<PersonDto> $people */
+    /** @return PersonDto[] $people */
     public function listPeopleInGroup(string $accessToken, Group $group): array;
 }
 

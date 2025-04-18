@@ -14,7 +14,7 @@ class RemoteLicenseController extends Controller
         $accessToken = ...
         $licenseDto = $this->someTransformation($request); // just go with it
         ...
-        $license = $client->createLicence($accessToken, $licenseDto);
+        $license = $client->createLicense($accessToken, $licenseDto);
 
         return response()->redirect('license.index');
     }
@@ -59,7 +59,7 @@ interface RemoteLicensesClientInterface {
 }
 ```
 
-But, when we want to implement those methods, we realize we don't want to support CRUD methods for AFAS Licences, nor for Google People.
+But, when we want to implement those methods, we realize we don't want to support CRUD methods for AFAS Licenses, nor for Google People.
 All customers using those, handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.
 
 We can split up the interfaces for their specific use cases

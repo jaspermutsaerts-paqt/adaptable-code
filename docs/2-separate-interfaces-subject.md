@@ -1,5 +1,5 @@
 
-Licenses are introduced, so we add a license method to the client interface
+A concept called Licenses is introduced, so we add a license method to the client interface
 
 
 ```php
@@ -17,10 +17,10 @@ class RemoteLicenseController extends Controller
 ```php
 interface ClientInterface {
 
-    /** @return PersonDto[] $people */
+    /** @return PersonDto[] */
     public function getPeopleInGroup(string $accessToken, Group $group): array;
      
-     /** @return LicenseDto[] $licenses */
+     /** @return LicenseDto[] */
     public function getLicensesForPerson(string $accessToken, Group $group): array;
 }
 
@@ -31,7 +31,7 @@ class \App\Clients\Google implements ClientInterface { ... }
 
 ----
 
-But, our customer using Google people uses Licences from AFAS.  
+But, our customer using Google people uses Licenses from a different source, for example AFAS.  
 We actually don't have a case for Google Licenses at the moment.
 
 So, we split them up per subject: 

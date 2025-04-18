@@ -107,7 +107,7 @@ class PersonClient implements
 namespace \App\Clients\Microsoft;
   
 class LicenseClient implements
-    ListRemoteLicencesClientInterface,
+    ListRemoteLicensesClientInterface,
     EditRemoteLicenseClientInterface { 
       
     public function getLicensesForPerson(string $accessToken, Person $person): array {
@@ -136,4 +136,5 @@ class LicenseClient implements
 }
 ```
 
-It should not need much change in any application code, only in DI setup (if any)
+It should not need much change in any application code, only  (if any) in the Dependence Injection,
+in other words in the Service Container setup. 
