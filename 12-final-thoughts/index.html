@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Final thoughts - Adaptable code</title>
+    <title>Final Thoughts - Adaptable code</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Final thoughts";
-        var mkdocs_page_input_path = "12-outro.md";
+        var mkdocs_page_name = "Final Thoughts";
+        var mkdocs_page_input_path = "12-final-thoughts.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -72,18 +72,12 @@
                 <li class="toctree-l1"><a class="reference internal" href="../11-mutability-fakes/">Testing: Support mutability in fakes</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Final thoughts</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#when-do-you-introduce-an-interface">When do you introduce an interface?</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#when-do-you-split-up-your-interface">When do you split up your interface?</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#but-when-all-dependencies-are-interfaces-i-can-not-see-what-it-does">"But when all dependencies are interfaces, I can not see what it does!"</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../12-considerations.md">Considerations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../12-outro.md">Final thoughts</a>
                 </li>
               </ul>
       </div>
@@ -100,7 +94,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Final thoughts</li>
+      <li class="breadcrumb-item active">Final Thoughts</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -109,11 +103,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="conclusion">Conclusion</h1>
-<p>This talk was just about interfaces. But that's not a catchy title.
-For those who are not a fan, </p>
-<h2 id="summary">Summary</h2>
-<p>When introducing interfaces</p>
+                <h1 id="final-thoughts">Final Thoughts</h1>
 <h2 id="when-do-you-introduce-an-interface">When do you introduce an interface?</h2>
 <p>Always.<br />
 No, not really. It depends on how interchangeable it likely will be.</p>
@@ -122,48 +112,61 @@ No, not really. It depends on how interchangeable it likely will be.</p>
 <li>I'd like to be able to make an offline/in memory version</li>
 <li>Even if you don't think the remote source will change, API's can change, so you could have an implementation for both
   versions in a transition period.</li>
-<li>More than once in my something was "only needed from remote X",  to later be asked to add it for remote Y too.
+<li>More than once in my something was "only needed from remote X", to later be asked to add it for remote Y too.
   And sometimes even during development of X I needed to pivot to Y</li>
 </ul>
 <p>Even during development, I'd like to ask myself this question:</p>
-<p><strong>If for a specific situation (but not all), some part needs other conditions, another remote source, another remote destination,
-How much of the application code do I need to change?</strong> </p>
+<p><strong>If for a specific situation (but not all), some part needs other conditions, another remote source, another remote
+destination,
+How much of the application code do I need to change?</strong></p>
 <p>Try to make those parts separate dependencies (if they aren't already) and try to define them as interfaces.
-In other words: can you make the application plug &amp; play while maintaining its basic flow/business rules regardless of the implementations?</p>
-<h2 id="when-do-you-split-up-your-interface">When do you split up your interface?</h2>
+In other words: can you make the application plug &amp; play while maintaining its basic flow/business rules regardless of
+the implementations?</p>
+<h2 id="when-do-you-split-up-your-interface-into-multiple-parts">When do you split up your interface into multiple parts?</h2>
 <ul>
 <li>Decide whether all implementations will definitely need to implement all methods, if not: split up.</li>
 <li>Are you sure the interface serves a single purpose, or is it just that your current intended implementation does all
   these things?</li>
 </ul>
+<p>"We need to at this method to a class, so we need to add it to all its interface's implementations"
+That's a good starting point to consider whether the new method is part of the same context of purpose.</p>
 <h2 id="but-when-all-dependencies-are-interfaces-i-can-not-see-what-it-does">"But when all dependencies are interfaces, I can not see what it does!"</h2>
-<p>Yes you can.</p>
-<pre><code class="language-php">class CardDeck {
+<p>Yes you can. As long as we name our dependencies and interfaces appropriately</p>
+<pre><code class="language-php">namespace App\Cards;
 
-    public function __(
-        private array $cards;
-        private readonly RandomNumberGeneratorInterface randomNumberGenerator
-    ){        
+use Webmozart\Assert\Assert;
+
+class Deck
+{
+    private array $cards = [];
+
+    public function __construct(
+        private readonly RandomNumberGeneratorInterface $randomNumberGenerator,
+    )
+    {
     }
 
-    public function drawCard(): Card {
-        $index = $this-&gt;randomNumberGenerator-&gt;getRandomNumberBelow(count($cards));
-        $this-&gt;cards = array_slice($this-&gt;cards, $index, 1)
+    public function drawCard(): Card
+    {
+        Assert::notEmpty($this-&gt;cards, 'No cards left in the deck');
 
+        $index = $this-&gt;randomNumberGenerator-&gt;getRandomNumberLessThan(count($this-&gt;cards));
+        $card = $this-&gt;cards[$index];
+
+        array_splice($this-&gt;cards, $index, 1);
+
+        return $card;
     }
-}
 
 </code></pre>
-<p>If you see a dependency is called <code>RandomNumberGeneratorInterface</code> and a method is called <code>getRandomNumber()</code>
-Do you really need to see the source?</p>
-<p>That is only relevant when fixing <em>that</em> dependency, but if that's not reported broken you better believe it returns a random number.</p>
-<h1 id="thoughts">Thoughts?</h1>
+<p>Do you really need to see the implementation of <code>RandomNumberGeneratorInterface::getRandomNumberLessThan()</code> to know
+understand what is going on in <code>drawCard()</code>?</p>
+<p>That is only relevant when fixing <em>that</em> dependency, but if that's not reported broken you better believe it returns a
+random number less than the given argument.</p>
+<p>Also yes this is a working game: <code>./artisan app:blackjack</code></p>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../11-mutability-fakes/" class="btn btn-neutral float-left" title="Testing: Support mutability in fakes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-    </div>
 
   <hr/>
 
@@ -184,8 +187,6 @@ Do you really need to see the source?</p>
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
-    
-      <span><a href="../11-mutability-fakes/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
