@@ -108,7 +108,7 @@
 {
     public function index(App\Person $person, ClientInterface $client): Response {
 
-        $licenses = $client-&gt;getLicensesForPerson($accessToken, $person);
+        $licenses = $client-&gt;getLicensesForPerson($person);
 
         return response()-&gt;view('license.index', ['licenses' =&gt; $licenses]);
     }
@@ -117,10 +117,10 @@
 <pre><code class="language-php">interface ClientInterface {
 
     /** @return PersonDto[] */
-    public function getPeopleInGroup(string $accessToken, Group $group): array;
+    public function getPeopleInGroup(Group $group): array;
 
      /** @return LicenseDto[] */
-    public function getLicensesForPerson(string $accessToken, Group $group): array;
+    public function getLicensesForPerson(Person $person): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }
@@ -131,13 +131,13 @@ class \App\Clients\Google implements ClientInterface { ... }
 We actually don't have a case for Google Licenses at the moment.</p>
 <p>So, we split them up per subject: </p>
 <pre><code class="language-php">interface RemotePersonClientInterface {   
-     /** @return LicenseDto[] $licenses */
-    public function getPeopleInGroup(string $accessToken, Group $group): array;
+    /** @return PersonDto[] */
+    public function getPeopleInGroup(Group $group): array;
 }
 
 interface RemoteLicensesClientInterface {
      /** @return LicenseDto[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): array;
+    public function getLicensesForPerson(Person $person): array;
 }
 
 class \App\Clients\Microsoft implements RemotePersonClientInterface, RemoteLicensesClientInterface  { ... }
