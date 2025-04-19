@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\App\Cards;
 
 use App\Cards\Card;
+use App\Cards\Enums\Suit;
 use App\Cards\Hand;
-use App\Cards\Suit;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;

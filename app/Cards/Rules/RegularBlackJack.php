@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Cards\Rules;
 
-use App\Cards\GameOutcome;
-use App\Cards\TurnResult;
+use App\Cards\Enums\GameOutcome;
+use App\Cards\Enums\TurnResult;
 
 class RegularBlackJack implements DetermineGameOutcomeInterface
 {

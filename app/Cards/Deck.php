@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Cards;
 
+use App\Cards\Enums\Suit;
 use App\Cards\NumberGenerators\RandomNumberGeneratorInterface;
 use Webmozart\Assert\Assert;
 

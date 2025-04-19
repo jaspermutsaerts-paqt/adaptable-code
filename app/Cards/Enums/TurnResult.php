@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Cards;
+namespace App\Cards\Enums;
 
 enum TurnResult
 {

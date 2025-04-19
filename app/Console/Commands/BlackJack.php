@@ -6,13 +6,13 @@ namespace App\Console\Commands;
 
 use App\Cards\Card;
 use App\Cards\Deck;
-use App\Cards\GameOutcome;
+use App\Cards\Enums\GameOutcome;
+use App\Cards\Enums\TurnResult;
 use App\Cards\Hand;
 use App\Cards\Rules\DetermineGameOutcomeInterface;
 use App\Cards\Strategies\DealerShouldHitStrategy;
 use App\Cards\Strategies\HitCardStrategyInterface;
 use App\Cards\Strategies\PlayerShouldHitStrategy;
-use App\Cards\TurnResult;
 use Illuminate\Console\Command;
 
 class BlackJack extends Command
