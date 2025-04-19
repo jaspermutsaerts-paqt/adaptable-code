@@ -7,7 +7,7 @@ class RemoteLicenseController extends Controller
 {
     public function index(App\Person $person, ClientInterface $client): Response {
 
-        $licenses = $client->getLicensesForPerson($accessToken, $person);
+        $licenses = $client->getLicensesForPerson($person);
 
         return response()->view('license.index', ['licenses' => $licenses]);
     }
@@ -18,10 +18,10 @@ class RemoteLicenseController extends Controller
 interface ClientInterface {
 
     /** @return PersonDto[] */
-    public function getPeopleInGroup(string $accessToken, Group $group): array;
+    public function getPeopleInGroup(Group $group): array;
      
      /** @return LicenseDto[] */
-    public function getLicensesForPerson(string $accessToken, Group $group): array;
+    public function getLicensesForPerson(Person $person): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }
@@ -39,13 +39,13 @@ So, we split them up per subject:
 
 ```php
 interface RemotePersonClientInterface {   
-     /** @return LicenseDto[] $licenses */
-    public function getPeopleInGroup(string $accessToken, Group $group): array;
+    /** @return PersonDto[] */
+    public function getPeopleInGroup(Group $group): array;
 }
 
 interface RemoteLicensesClientInterface {
      /** @return LicenseDto[] $licenses */
-    public function getLicensesForPerson(string $accessToken, Person $person): array;
+    public function getLicensesForPerson(Person $person): array;
 }
 
 class \App\Clients\Microsoft implements RemotePersonClientInterface, RemoteLicensesClientInterface  { ... }
