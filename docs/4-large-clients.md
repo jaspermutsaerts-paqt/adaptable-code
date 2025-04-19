@@ -9,55 +9,55 @@ class Microsoft implements
     ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { 
     
-    public function getPeopleInGroup(string $accessToken, Group $group): array {
+    public function getPeopleInGroup(Group $group): array {
         ...
     }
     
-    public function createPerson(string $accessToken, PersonDto $person): Person {
+    public function createPerson(PersonDto $person): Person {
         ...
     }
     
-    public function deletePerson(string $accessToken, PersonDto $person): bool {
+    public function deletePerson(PersonDto $person): bool {
         ...
     }
     
-    public function updatePerson(string $accessToken, PersonDto $person): bool {
+    public function updatePerson(PersonDto $person): bool {
         ...
     }    
     
-    public function createPerson(string $accessToken, PersonDto $person): Person {
+    public function createPerson(PersonDto $person): Person {
         ...
     }
     
-    public function deletePerson(string $accessToken, PersonDto $person): bool {
+    public function deletePerson(PersonDto $person): bool {
         ...
     }
     
-    public function updatePerson(string $accessToken, PersonDto $person): bool {
+    public function updatePerson(PersonDto $person): bool {
         ...
     }    
     
-    public function getLicensesForPerson(string $accessToken, Person $person): array {
+    public function getLicensesForPerson(Person $person): array {
         ...
     }    
     
-    public function createLicense(string $accessToken, LicenseDto $license): License {
+    public function createLicense(LicenseDto $license): License {
         ...
     }
     
-    public function deleteLicense(string $accessToken, LicenseDto $license): bool {
+    public function deleteLicense(LicenseDto $license): bool {
         ...
     }
     
-    public function updateLicense(string $accessToken, LicenseDto $license): boo {
+    public function updateLicense(LicenseDto $license): boo {
         ...
     }
           
-    public function assignLicenseToPerson(string $accessToken, Person $person, LicenseDto $license): bool {
+    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool {
         ...
     }
     
-    public function removeLicenseFromPerson(string $accessToken, Person $person, LicenseDto $license): bool {
+    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool {
         ...
     }
 }
@@ -73,31 +73,31 @@ class PersonClient implements
     ListRemotePeopleClientInterface,
     EditRemoteLicenseClientInterface { 
     
-    public function getPeopleInGroup(string $accessToken, Group $group): array {
+    public function getPeopleInGroup(Group $group): array {
         ...
     }
     
-    public function createPerson(string $accessToken, PersonDto $person): Person {
+    public function createPerson(PersonDto $person): Person {
         ...
     }
     
-    public function deletePerson(string $accessToken, PersonDto $person): bool {
+    public function deletePerson(PersonDto $person): bool {
         ...
     }
     
-    public function updatePerson(string $accessToken, PersonDto $person): bool {
+    public function updatePerson(PersonDto $person): bool {
         ...
     }    
     
-    public function createPerson(string $accessToken, PersonDto $person): Person {
+    public function createPerson(PersonDto $person): Person {
         ...
     }
     
-    public function deletePerson(string $accessToken, PersonDto $person): bool {
+    public function deletePerson(PersonDto $person): bool {
         ...
     }
     
-    public function updatePerson(string $accessToken, PersonDto $person): bool {
+    public function updatePerson(PersonDto $person): bool {
         ...
     }    
 }
@@ -110,27 +110,27 @@ class LicenseClient implements
     ListRemoteLicensesClientInterface,
     EditRemoteLicenseClientInterface { 
       
-    public function getLicensesForPerson(string $accessToken, Person $person): array {
+    public function getLicensesForPerson(Person $person): array {
         ...
     }    
     
-    public function createLicense(string $accessToken, LicenseDto $license): License {
+    public function createLicense(LicenseDto $license): License {
         ...
     }
     
-    public function deleteLicense(string $accessToken, LicenseDto $license): bool {
+    public function deleteLicense(LicenseDto $license): bool {
         ...
     }
     
-    public function updateLicense(string $accessToken, LicenseDto $license): boo {
+    public function updateLicense(LicenseDto $license): boo {
         ...
     }
           
-    public function assignLicenseToPerson(string $accessToken, Person $person, LicenseDto $license): bool {
+    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool {
         ...
     }
     
-    public function removeLicenseFromPerson(string $accessToken, Person $person, LicenseDto $license): bool {
+    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool {
         ...
     }
 }
