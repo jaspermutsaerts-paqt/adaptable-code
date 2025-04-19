@@ -1,4 +1,4 @@
-# Final Thoughts ##
+# Considerations
 
 ## When do you introduce an interface?
 
@@ -34,7 +34,7 @@ That's a good starting point to consider whether the new method is part of the s
 
 ## "But when all dependencies are interfaces, I can not see what it does!"
 
-Yes you can. As long as we name our dependencies and interfaces appropriately
+Yes you can. As long as we name our interfaces and methods appropriately.
 
 ```php
 namespace App\Cards;
@@ -62,7 +62,7 @@ class Deck
 
         return $card;
     }
-
+...
 ```
 
 Do you really need to see the implementation of `RandomNumberGeneratorInterface::getRandomNumberLessThan()` to know
