@@ -7,7 +7,7 @@ namespace App\Clients\Afas;
 use App\Domains\License\Clients\RemoteLicenseClientInterface;
 use App\Models\Person;
 
-class LicenseClient implements RemoteLicenseClientInterface
+class Client implements RemoteLicenseClientInterface
 {
     public function __construct(private readonly LicenseTransformer $licenseTransformer)
     {

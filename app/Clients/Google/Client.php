@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+namespace App\Clients\Google;
+
 use App\Domains\Person\Clients\RemotePersonClientInterface;
 use App\Models\Group;
 
-class PersonClient implements RemotePersonClientInterface
+class Client implements RemotePersonClientInterface
 {
     public function __construct(private readonly PersonTransformer $personTransformer)
     {
