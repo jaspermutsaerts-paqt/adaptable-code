@@ -12,7 +12,10 @@ nav:
       - "Fake: In Memory": 101-fakes-in-memory.md
       - "Fake: Database" : 102-fakes-database.md
       - "Fake: Support mutability": 11-mutability-fakes.md
-  - "Considerations": 12-considerations.md
+  - "Considerations":
+    - "When to introduce": considerations/when-introduce.md
+    - "When to split up": considerations/when-split.md
+    - "Can't see": considerations/cant-see-implementation.md
   - "Conclusion": 13-outro.md
 
 

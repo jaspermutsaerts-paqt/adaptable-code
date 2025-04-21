@@ -63,7 +63,7 @@ class Microsoft implements
 }
 ```
 
-You probably want to separate them as such:
+That is one long class. You might want to separate them as such:
 
 
 ```php

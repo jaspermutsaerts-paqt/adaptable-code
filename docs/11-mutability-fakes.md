@@ -1,4 +1,4 @@
-Making fakes work with persistence is harder, but not impossible.
+Making fakes work with good mutability is harder, but not impossible.
 I wanted to put some examples here, but it was hard to make it not too complex.
 There are some considerations:
 
