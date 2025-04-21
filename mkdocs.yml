@@ -7,7 +7,10 @@ nav:
   - Second separation: 2-separate-interfaces-subject.md
   - Complete separation: 3-separate-interfaces-functionality.md
   - Separate implementation: 4-large-clients.md
-  - "Testing: Mocks vs Fakes": 10-mocks-vs-fakes.md
+  - "Testing":
+      - "Mocks vs Fakes": 10-mocks-vs-fakes.md
+      - "In Memory": 101-fakes-in-memory.md
+      - Database : 102-fakes-database.md
   - "Testing: Support mutability in fakes": 11-mutability-fakes.md
   - "Considerations": 12-considerations.md
   - "Conclusion": 13-outro.md
