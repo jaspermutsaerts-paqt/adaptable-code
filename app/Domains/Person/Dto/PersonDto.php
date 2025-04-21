@@ -7,8 +7,8 @@ namespace App\Domains\Person\Dto;
 readonly class PersonDto
 {
     public function __construct(
-        private string $remoteId,
-        private string $name,
+        public string $remoteId,
+        public string $name,
     ) {
     }
 }

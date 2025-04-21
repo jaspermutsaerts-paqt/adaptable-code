@@ -31,7 +31,7 @@ mkdocs serve
 ### To Do's
 
 - [x] Add an intro
-- [ ] Add practical example of too much mocking
+- [x] Add practical example of too much mocking
 - [ ] Expand test double example, both mutable and immutable
 - [x] Address _when_ to introduce interfaces
 - [x] Address _when_ to split up interfaces or its implementations

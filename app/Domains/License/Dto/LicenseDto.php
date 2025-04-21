@@ -7,8 +7,8 @@ namespace App\Domains\License\Dto;
 readonly class LicenseDto
 {
     public function __construct(
-        private string $remoteId,
-        private string $name,
+        public string $remoteId,
+        public string $name,
     ) {
     }
 }

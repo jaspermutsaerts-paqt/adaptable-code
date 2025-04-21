@@ -5,11 +5,11 @@ Jump in time, we have all remote CRUD methods now, so we have a controller like 
 class RemoteLicenseController extends Controller
 {
 
-    public function index(App\Person $person, RemotePersonClientInterface $client): Response { ... }
+    public function index(App\Person $person, RemoteLicenseClientInterface $client): Response { ... }
     
     public function create(): Response { .. }
     
-    public function store(Request $request, RemotePersonClientInterface $client): Response {
+    public function store(Request $request, RemoteLicenseClientInterface $client): Response {
 
         $licenseDto = $this->someTransformation($request); // just go with it
         ...
@@ -19,7 +19,7 @@ class RemoteLicenseController extends Controller
     }
     
     public function edit(): Response { .. }
-    public function update(Request $request, RemotePersonClientInterface $client): Response { .. }
+    public function update(Request $request, RemoteLicenseClientInterface $client): Response { .. }
 
 }
 ```
