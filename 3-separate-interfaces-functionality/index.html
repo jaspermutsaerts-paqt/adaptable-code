@@ -64,17 +64,25 @@
                 <li class="toctree-l1"><a class="reference internal" href="../4-large-clients/">Separate implementation</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-fakes/">Testing: Mocks vs Fakes</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/mocks-vs-fakes/">Mocks vs Fakes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/fakes-in-memory/">Fake: In Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/fakes-database/">Fake: Database</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/mutability-fakes/">Fake: Support mutability</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">Considerations</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../11-mutability-fakes/">Testing: Support mutability in fakes</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../12-considerations/">Considerations</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/when-introduce/">When to introduce</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/when-split/">When to split up</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/cant-see-implementation/">But I can't see</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../13-outro/">Conclusion</a>
@@ -107,11 +115,11 @@
 <pre><code class="language-php">class RemoteLicenseController extends Controller
 {
 
-    public function index(App\Person $person, RemotePersonClientInterface $client): Response { ... }
+    public function index(App\Person $person, RemoteLicenseClientInterface $client): Response { ... }
 
     public function create(): Response { .. }
 
-    public function store(Request $request, RemotePersonClientInterface $client): Response {
+    public function store(Request $request, RemoteLicenseClientInterface $client): Response {
 
         $licenseDto = $this-&gt;someTransformation($request); // just go with it
         ...
@@ -121,7 +129,7 @@
     }
 
     public function edit(): Response { .. }
-    public function update(Request $request, RemotePersonClientInterface $client): Response { .. }
+    public function update(Request $request, RemoteLicenseClientInterface $client): Response { .. }
 
 }
 </code></pre>
@@ -159,7 +167,7 @@ interface RemoteLicensesClientInterface {
 <p>But, when we want to implement those methods, we realize we don't want to support CRUD methods for AFAS Licenses, nor for Google People.
 All customers using those, handle their updating outside of our application, not much sense writing support for it just to comply with the interfaces.</p>
 <p>We can split up the interfaces for their specific use cases</p>
-<pre><code class="language-php">interface ListRemotePeopleClientInterface { 
+<pre><code class="language-php">interface ListRemotePersonClientInterface { 
 
     /** @return PersonDto[] $people */
     public function getPeopleInGroup(string Group $group): array;
@@ -194,13 +202,13 @@ interface EditRemoteLicenseClientInterface {
 }
 </code></pre>
 <p>Note: depending on the situation it's likely the Edit-version always needs to support Listing, so you could opt for<br />
-<code>EditRemotePersonClientInterface extends ListRemotePeopleClientInterface</code>
+<code>EditRemotePersonClientInterface extends ListRemotePersonClientInterface</code>
 For the purpose of this presentation they're considered as completed separate.</p>
 <p>We make sure the supporting clients implement only what they support</p>
 <pre><code class="language-php">class \App\Clients\Microsoft implements
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface,
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { ... }
 
 

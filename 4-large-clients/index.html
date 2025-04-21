@@ -64,17 +64,25 @@
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Separate implementation</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">Testing</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../10-mocks-vs-fakes/">Testing: Mocks vs Fakes</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/mocks-vs-fakes/">Mocks vs Fakes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/fakes-in-memory/">Fake: In Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/fakes-database/">Fake: Database</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/mutability-fakes/">Fake: Support mutability</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">Considerations</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../11-mutability-fakes/">Testing: Support mutability in fakes</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../12-considerations/">Considerations</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/when-introduce/">When to introduce</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/when-split/">When to split up</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../considerations/cant-see-implementation/">But I can't see</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../13-outro/">Conclusion</a>
@@ -165,11 +173,11 @@ class Microsoft implements
     }
 }
 </code></pre>
-<p>You probably want to separate them as such:</p>
+<p>That is one long class. You might want to separate them as such:</p>
 <pre><code class="language-php">namespace \App\Clients\Microsoft;
 
 class PersonClient implements
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { 
 
     public function getPeopleInGroup(Group $group): array {
@@ -239,7 +247,7 @@ in other words in the Service Container setup. </p>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../3-separate-interfaces-functionality/" class="btn btn-neutral float-left" title="Complete separation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../10-mocks-vs-fakes/" class="btn btn-neutral float-right" title="Testing: Mocks vs Fakes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../testing/mocks-vs-fakes/" class="btn btn-neutral float-right" title="Mocks vs Fakes">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -265,7 +273,7 @@ in other words in the Service Container setup. </p>
       <span><a href="../3-separate-interfaces-functionality/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../10-mocks-vs-fakes/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../testing/mocks-vs-fakes/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
