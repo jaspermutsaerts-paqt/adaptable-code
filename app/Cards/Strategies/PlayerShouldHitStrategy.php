@@ -18,6 +18,6 @@ class PlayerShouldHitStrategy implements HitCardStrategyInterface
 
     public function shouldHitCard(Hand $hand): bool
     {
-        return $this->output->confirm('Do you want another card?');
+        return $this->output->confirm('Do you want another card?', false);
     }
 }
