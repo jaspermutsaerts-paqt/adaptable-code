@@ -1,45 +1,8 @@
-Previous example will not work correctly when we expect an update to also be persisted on the remote, but shouldn't change anything locally.
+Making fakes work with persistence is harder, but not impossible.
+I wanted to put some examples here, but it was hard to make it not too complex.
+There are some considerations:
 
-Now, what if you want things to be persisted, at least during your tests.
-
-
-**Sorry, Not ready**
-```php
-
-namespace \App\Clients\InMemory;
-
-class PeopleClient implements ListRemotePeopleClientInterface, EditRemotePersonClient {
-
-    /** @var Collection<string, Collection<Dto\Person>> */
-    private Collection $remotePeopleInGroups;
-
-    public function __construct(private readonly string $validAccessToken): {
-         $this->remotePeopleInGroups = Groups::whereNotNull('some_identifier')
-            ->mapWithKeys(fn (Group $group) => [
-                $group->some_identifier => $group->people->map($this->someTransformation(...)); // still going with it?
-            ]);         
-    }
-
-    public function getPeopleInGroup(Group $group): array {
-        Assert::eq($accessToken, $this->validAccessToken, 'Invalid access token');
-        Assert::true($this->remotePeopleInGroups->has($group->some_identifier), 'Unknown group');        
-    }
-    
-    
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
-    
-    public function deletePerson(PersonDto $person): bool {
-        ...
-    }
-    
-    public function updatePerson(PersonDto $person): bool {
-        ...
-    }    
-    
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
-} 
-```
+- unique value generation for create-methods
+- If you use database as a source for your fake, an update to sync remote with local won't do anything.
+It's easy to make it work in a flow, but hard to make it useful.
+- An in-memory solution like a simple array is easier to implement, but gets tricky when you need to maintain relations.

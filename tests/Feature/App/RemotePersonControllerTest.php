@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Feature\App;
 
 use App\Clients\Database\PersonClient as DatabaseListPersonClient;
-use App\Domains\Person\Clients\RemotePersonClientInterface as ListRemotePersonClientInterface;
+use App\Domains\Person\Clients\ListRemotePersonClientInterface as ListRemotePersonClientInterface;
 use App\Models\Group;
 use App\Models\Person;
 use Illuminate\Foundation\Testing\TestCase;

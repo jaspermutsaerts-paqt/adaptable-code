@@ -64,7 +64,7 @@ All customers using those, handle their updating outside of our application, not
 We can split up the interfaces for their specific use cases
 
 ```php
-interface ListRemotePeopleClientInterface { 
+interface ListRemotePersonClientInterface { 
     
     /** @return PersonDto[] $people */
     public function getPeopleInGroup(string Group $group): array;
@@ -99,7 +99,7 @@ interface EditRemoteLicenseClientInterface {
 }
 ```
 Note: depending on the situation it's likely the Edit-version always needs to support Listing, so you could opt for  
-`EditRemotePersonClientInterface extends ListRemotePeopleClientInterface`
+`EditRemotePersonClientInterface extends ListRemotePersonClientInterface`
 For the purpose of this presentation they're considered as completed separate.
 
 
@@ -107,9 +107,9 @@ We make sure the supporting clients implement only what they support
 
 ```php
 class \App\Clients\Microsoft implements
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface,
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { ... }
     
     

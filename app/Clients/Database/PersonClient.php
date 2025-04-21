@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Clients\Database;
 
-use App\Domains\Person\Clients\RemotePersonClientInterface;
+use App\Domains\Person\Clients\ListRemotePersonClientInterface;
 use App\Models\Group;
 use App\Models\Person;
 use Webmozart\Assert\Assert;
 
-class PersonClient implements RemotePersonClientInterface
+class PersonClient implements ListRemotePersonClientInterface
 {
     public function __construct(private PersonTransformer $personTransformer)
     {

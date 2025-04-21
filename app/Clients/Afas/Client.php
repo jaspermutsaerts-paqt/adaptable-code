@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Clients\Afas;
 
-use App\Domains\License\Clients\RemoteLicenseClientInterface;
+use App\Domains\License\Clients\ListRemoteLicenseClientInterface;
 use App\Models\Person;
 
-class Client implements RemoteLicenseClientInterface
+class Client implements ListRemoteLicenseClientInterface
 {
     public function __construct(private readonly LicenseTransformer $licenseTransformer)
     {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Clients\Fake;
+namespace App\Clients\InMemory;
 
-use App\Domains\License\Clients\RemoteLicenseClientInterface;
+use App\Domains\License\Clients\ListRemoteLicenseClientInterface;
 use App\Domains\License\Dto\LicenseDto;
 use App\Models\Person;
 use Webmozart\Assert\Assert;
 
-class LicenseClient implements RemoteLicenseClientInterface
+class LicenseClient implements ListRemoteLicenseClientInterface
 {
     /**
      * @param array<string, LicenseDto> $licensesPerPerson
@@ -20,8 +20,8 @@ class LicenseClient implements RemoteLicenseClientInterface
 
     public function getLicensesForPerson(Person $person): array
     {
-        Assert::keyExists($this->licensesPerPerson, $person->id, 'Unknown person');
+        Assert::keyExists($this->licensesPerPerson, $person->some_identifier, 'Unknown person');
 
-        return $this->licensesPerPerson[$person->id];
+        return $this->licensesPerPerson[$person->some_identifier];
     }
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Clients\Google;
 
-use App\Domains\Person\Clients\RemotePersonClientInterface;
+use App\Domains\Person\Clients\ListRemotePersonClientInterface;
 use App\Models\Group;
 
-class Client implements RemotePersonClientInterface
+class Client implements ListRemotePersonClientInterface
 {
     public function __construct(private readonly PersonTransformer $personTransformer)
     {

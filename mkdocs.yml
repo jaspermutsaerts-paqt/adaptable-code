@@ -9,9 +9,9 @@ nav:
   - Separate implementation: 4-large-clients.md
   - "Testing":
       - "Mocks vs Fakes": 10-mocks-vs-fakes.md
-      - "In Memory": 101-fakes-in-memory.md
-      - Database : 102-fakes-database.md
-  - "Testing: Support mutability in fakes": 11-mutability-fakes.md
+      - "Fake: In Memory": 101-fakes-in-memory.md
+      - "Fake: Database" : 102-fakes-database.md
+      - "Fake: Support mutability": 11-mutability-fakes.md
   - "Considerations": 12-considerations.md
   - "Conclusion": 13-outro.md
 

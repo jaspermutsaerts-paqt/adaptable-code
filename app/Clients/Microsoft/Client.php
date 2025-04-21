@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Clients\Microsoft\LicenseTransformer;
-use App\Domains\License\Clients\RemoteLicenseClientInterface;
-use App\Domains\Person\Clients\RemotePersonClientInterface;
+namespace App\Clients\Microsoft;
+
+use App\Domains\License\Clients\ListRemoteLicenseClientInterface;
+use App\Domains\Person\Clients\ListRemotePersonClientInterface;
 use App\Models\Group;
 use App\Models\Person;
 
-class Client implements RemotePersonClientInterface, RemoteLicenseClientInterface
+class Client implements ListRemotePersonClientInterface, ListRemoteLicenseClientInterface
 {
     public function __construct(
         private readonly PersonTransformer $personTransformer,

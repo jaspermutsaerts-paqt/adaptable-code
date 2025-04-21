@@ -71,4 +71,4 @@ understand what is going on in `drawCard()`?
 That is only relevant when fixing _that_ dependency, but if that's not reported broken you better believe it returns a
 random number less than the given argument.
 
-Also yes this is a working game: `./artisan app:blackjack`
+Also yes this is a working game: `./artisan app:blackjack`, I got carried away.

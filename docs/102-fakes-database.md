@@ -4,7 +4,7 @@
 
 namespace \App\Clients\Database;
 
-class ListPeopleClient implements ListRemotePeopleClient {
+class ListPersonClient implements ListRemotePersonClient {
 
     /** @return PersonDto[] */
     public function getPeopleInGroup(Group $group): array

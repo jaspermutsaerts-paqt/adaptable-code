@@ -70,7 +70,7 @@ You probably want to separate them as such:
 namespace \App\Clients\Microsoft;
 
 class PersonClient implements
-    ListRemotePeopleClientInterface,
+    ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { 
     
     public function getPeopleInGroup(Group $group): array {

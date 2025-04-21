@@ -7,7 +7,7 @@ namespace App\Domains\License\Clients;
 use App\Domains\License\Dto\LicenseDto;
 use App\Models\Person;
 
-interface RemoteLicenseClientInterface
+interface ListRemoteLicenseClientInterface
 {
     /** @return array<LicenseDto> */
     public function getLicensesForPerson(Person $person): array;
