@@ -6,10 +6,8 @@ class RemotePersonController extends Controller
 {
     public function index(Group $group, \App\Clients\Microsoft $client): Response {
 
-        $accessToken = config('pretend-this-is-always-valid');
-
         /** @var Collection<\Microsoft\Graph\Model\User> $people */
-        $users = $client->listUsersInGroup($accessToken, $group);
+        $users = $client->listUsersInGroup($group);
         $people = $users->pluck('displayName', 'id');
 
         return response()->view('person.index', ['people' => $people]);
@@ -18,18 +16,17 @@ class RemotePersonController extends Controller
 ```
 
 
-
 ----
 But now, let's say a requirement for connecting to Google instead of Microsoft is introduced, and (for this example) Google might not call them users.
 Since we're looking for people not users, we can make interfaces use Person instead of User.
-We don't need the conversion of users to people in the controller anymore, since the clients are responsible for that
+We don't need the conversion of users to people in the controller anymore, since the clients are responsible for that.
 
 ```php
 class RemotePersonController extends Controller
 {
     public function index(Group $group, ClientInterface $client): Response {
 
-        $people = $client->listPeopleInGroup($accessToken, $group);
+        $people = $client->listPeopleInGroup($group);
 
         return response()->view('person.index', ['people' => $people]);
     }
@@ -40,7 +37,7 @@ class RemotePersonController extends Controller
 interface ClientInterface {
 
     /** @return PersonDto[] $people */
-    public function listPeopleInGroup(string $accessToken, Group $group): array;
+    public function listPeopleInGroup(Group $group): array;
 }
 
 class \App\Clients\Microsoft implements ClientInterface { ... }
