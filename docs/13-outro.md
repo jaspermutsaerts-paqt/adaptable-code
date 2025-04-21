@@ -1,6 +1,7 @@
 # Conclusion ##
 
-**This was just about promoting the use of interfaces. But that's not a catchy title.** 
+**This was just about promoting the use of interfaces and in particular splitting them up. But that's not a catchy title.** 
+
 
 ## Thoughts?
 

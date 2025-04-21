@@ -8,20 +8,21 @@ nav:
   - Complete separation: 3-separate-interfaces-functionality.md
   - Separate implementation: 4-large-clients.md
   - "Testing":
-      - "Mocks vs Fakes": 10-mocks-vs-fakes.md
-      - "Fake: In Memory": 101-fakes-in-memory.md
-      - "Fake: Database" : 102-fakes-database.md
-      - "Fake: Support mutability": 11-mutability-fakes.md
+      - "Mocks vs Fakes": testing/mocks-vs-fakes.md
+      - "Fake: In Memory": testing/fakes-in-memory.md
+      - "Fake: Database" : testing/fakes-database.md
+      - "Fake: Support mutability": testing/mutability-fakes.md
   - "Considerations":
     - "When to introduce": considerations/when-introduce.md
     - "When to split up": considerations/when-split.md
-    - "Can't see": considerations/cant-see-implementation.md
+    - "But I can't see": considerations/cant-see-implementation.md
   - "Conclusion": 13-outro.md
 
 
 
 theme:
   name: readthedocs
+  navigation_depth: 1
   highlightjs: true
   hljs_languages:
     - php
