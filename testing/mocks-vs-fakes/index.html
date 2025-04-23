@@ -119,7 +119,7 @@ You could mock dependencies of course, but there are some disadvantages.</p>
 <ul>
 <li>Each test (case) is responsible for setting up both expectations and return values</li>
 <li>It might accept incorrect arguments or return incorrect data</li>
-<li>Too many mocking might lead to a test only testing itself instead of production code</li>
+<li>Too many mocks together might lead to a test only testing itself instead of production code</li>
 </ul>
 <pre><code class="language-php">class RemotePersonControllerTest extends TestCase {
 

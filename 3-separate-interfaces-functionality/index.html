@@ -148,7 +148,7 @@
 
 }
 
-interface RemoteLicensesClientInterface {
+interface RemoteLicenseClientInterface {
 
     public function createLicense(string LicenseDto $license): License;
 
@@ -173,7 +173,7 @@ All customers using those, handle their updating outside of our application, not
     public function getPeopleInGroup(string Group $group): array;
 }
 
-interface ListRemoteLicensesClientInterface {
+interface ListRemoteLicenseClientInterface {
 
     /** @return LicenseDto[] $licenses */
     public function getLicensesForPerson(string Person $person): array;
@@ -204,35 +204,45 @@ interface EditRemoteLicenseClientInterface {
 <p>Note: depending on the situation it's likely the Edit-version always needs to support Listing, so you could opt for<br />
 <code>EditRemotePersonClientInterface extends ListRemotePersonClientInterface</code>
 For the purpose of this presentation they're considered as completed separate.</p>
-<p>We make sure the supporting clients implement only what they support</p>
+<p>We make sure the clients implement only what they support</p>
 <pre><code class="language-php">class \App\Clients\Microsoft implements
     ListRemotePersonClientInterface,
-    EditRemoteLicenseClientInterface,
-    ListRemotePersonClientInterface,
+    EditRemotePersonClientInterface,
+    ListRemoteLicenseClientInterface,
     EditRemoteLicenseClientInterface { ... }
 
 
-class \App\Clients\Google implements RemotePersonClientInterface { ... }
-class \App\Clients\Afas implements RemotePersonLicenseInterface { ... }
+class \App\Clients\Google implements ListRemotePersonClientInterface { ... }
+class \App\Clients\Afas implements ListRemoteLicenseInterface { ... }
 </code></pre>
 <p>Controllers can fairly easily* be updated</p>
-<pre><code class="language-php">class RemoteLicenseController extends Controller
+<pre><code class="language-php">class RemotePersonController extends Controller
 {
-    public function index(App\Person $person, ListRemoteLicensesClientInterface $client): Response { ... }
+    public function index(App\Person $person, ListRemotePersonClientInterface $client): Response { ... }
+
     public function create(): Response { ... }    
+
+    public function store(Request $request, EditRemotePersonClientInterface $client): Response { ... }
+
     public function edit(): Response { ... }
-    public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
+
+    public function update(Request $request, EditRemotePersonClientInterface $client): Response { ... }
 }
 </code></pre>
 <pre><code class="language-php">class RemoteLicenseController extends Controller
 {
-    public function index(App\Person $person, ListRemoteLicensesClientInterface $client): Response { ... }
+    public function index(App\Person $person, ListRemoteLicenseClientInterface $client): Response { ... }
+
     public function create(): Response { ... }    
+
+    public function store(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
+
     public function edit(): Response { ... }
+
     public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
 }
 </code></pre>
-<p>* Some DI tomfoolery is required, that's for later</p>
+<p>* Some DI tomfoolery is required</p>
               
             </div>
           </div><footer>
