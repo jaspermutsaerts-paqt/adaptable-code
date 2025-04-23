@@ -103,7 +103,7 @@ Note: depending on the situation it's likely the Edit-version always needs to su
 For the purpose of this presentation they're considered as completed separate.
 
 
-We make sure the supporting clients implement only what they support
+We make sure the clients implement only what they support
 
 ```php
 class \App\Clients\Microsoft implements
@@ -140,4 +140,4 @@ class RemoteLicenseController extends Controller
 }
 ```
 
-\* Some DI tomfoolery is required, that's for later
+\* Some DI tomfoolery is required
