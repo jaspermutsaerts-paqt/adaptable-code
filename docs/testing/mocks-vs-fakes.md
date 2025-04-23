@@ -25,7 +25,7 @@ class RemotePersonControllerTest extends TestCase {
             ->andReturn($licenses);
 
         $this->get(route('license.index', $this->personWithLicenses))
-            ->assertSeeInOrder('person2-license-1', 'person2-license-2']);
+            ->assertSeeInOrder(['person1-license-1', 'person1-license-2']);
 
         $licenses = [
             new LicenseDto('211111', 'person2-license-1'),
@@ -38,7 +38,7 @@ class RemotePersonControllerTest extends TestCase {
 
         // What will go wrong here?
         $this->get(route('license.index', $this->personWithLicenses))
-            ->assertSeeInOrder('person2-license-1', 'person2-license-2']); 
+            ->assertSeeInOrder(['person2-license-1', 'person2-license-2']); 
 
         // What will go wrong here?
         $this->get(route('license.index', $this->personNotOnRemote))
