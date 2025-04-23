@@ -136,7 +136,7 @@ You could mock dependencies of course, but there are some disadvantages.</p>
             -&gt;andReturn($licenses);
 
         $this-&gt;get(route('license.index', $this-&gt;personWithLicenses))
-            -&gt;assertSeeInOrder('person2-license-1', 'person2-license-2']);
+            -&gt;assertSeeInOrder(['person1-license-1', 'person1-license-2']);
 
         $licenses = [
             new LicenseDto('211111', 'person2-license-1'),
@@ -149,7 +149,7 @@ You could mock dependencies of course, but there are some disadvantages.</p>
 
         // What will go wrong here?
         $this-&gt;get(route('license.index', $this-&gt;personWithLicenses))
-            -&gt;assertSeeInOrder('person2-license-1', 'person2-license-2']); 
+            -&gt;assertSeeInOrder(['person2-license-1', 'person2-license-2']); 
 
         // What will go wrong here?
         $this-&gt;get(route('license.index', $this-&gt;personNotOnRemote))

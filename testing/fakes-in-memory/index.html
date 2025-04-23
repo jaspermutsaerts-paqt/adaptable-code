@@ -153,12 +153,12 @@ class RemotePersonControllerTest extends TestCase {
         $this-&gt;instance(ListRemoteLicenseClientInterface::class, new FakeLicenseClient($licenses));
 
         $this-&gt;get(route('license.index', $this-&gt;personWithLicenses))
-            -&gt;assertSeeInOrder('person1-license-1', 'person1-license-2']);
+            -&gt;assertSeeInOrder(['person1-license-1', 'person1-license-2']);
 
         $this-&gt;get(route('license.index', $this-&gt;otherPersonWithLicenses))
-            -&gt;assertSeeInOrder('person2-license-1', 'person2-license-2']);
+            -&gt;assertSeeInOrder(['person2-license-1', 'person2-license-2']);
 
-        // Fails on clear exception: unknown person
+        // Fails with clear exception: unknown person
         $this-&gt;get(route('license.index', $this-&gt;personNotOnRemote)) 
             -&gt;assertSee('No licenses found.'); 
     }

@@ -163,7 +163,7 @@ class RemotePersonControllerTest extends TestCase {
         $this-&gt;get(route('person.group', $groupWithoutPeople))
             -&gt;assertSee(['No people found in group.']);
 
-        // Fails on clear exception: unknown group
+        // Fails with clear exception: unknown group
         $this-&gt;get(route('person.group', $groupNotOnRemote)) 
             -&gt;assertSee(['No people found in group.']);
     }
