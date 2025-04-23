@@ -43,12 +43,12 @@ interface RemotePersonClientInterface {
     public function getPeopleInGroup(Group $group): array;
 }
 
-interface RemoteLicensesClientInterface {
+interface RemoteLicenseClientInterface {
      /** @return LicenseDto[] $licenses */
     public function getLicensesForPerson(Person $person): array;
 }
 
-class \App\Clients\Microsoft implements RemotePersonClientInterface, RemoteLicensesClientInterface  { ... }
+class \App\Clients\Microsoft implements RemotePersonClientInterface, RemoteLicenseClientInterface  { ... }
 class \App\Clients\Google implements RemotePersonClientInterface { ... }
-class \App\Clients\Afas implements RemoteLicensesClientInterface { ... }
+class \App\Clients\Afas implements RemoteLicenseClientInterface { ... }
 ```

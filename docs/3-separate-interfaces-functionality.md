@@ -41,7 +41,7 @@ interface RemotePersonClientInterface {
      
 }
 
-interface RemoteLicensesClientInterface {
+interface RemoteLicenseClientInterface {
 
     public function createLicense(string LicenseDto $license): License;
     
@@ -70,7 +70,7 @@ interface ListRemotePersonClientInterface {
     public function getPeopleInGroup(string Group $group): array;
 }
 
-interface ListRemoteLicensesClientInterface {
+interface ListRemoteLicenseClientInterface {
     
     /** @return LicenseDto[] $licenses */
     public function getLicensesForPerson(string Person $person): array;
@@ -108,13 +108,13 @@ We make sure the supporting clients implement only what they support
 ```php
 class \App\Clients\Microsoft implements
     ListRemotePersonClientInterface,
-    EditRemoteLicenseClientInterface,
-    ListRemotePersonClientInterface,
+    EditRemotePersonClientInterface,
+    ListRemoteLicenseClientInterface,
     EditRemoteLicenseClientInterface { ... }
     
     
-class \App\Clients\Google implements RemotePersonClientInterface { ... }
-class \App\Clients\Afas implements RemotePersonLicenseInterface { ... }
+class \App\Clients\Google implements ListRemotePersonClientInterface { ... }
+class \App\Clients\Afas implements ListRemoteLicenseInterface { ... }
 ```
 
 
@@ -123,7 +123,7 @@ Controllers can fairly easily\* be updated
 ```php
 class RemoteLicenseController extends Controller
 {
-    public function index(App\Person $person, ListRemoteLicensesClientInterface $client): Response { ... }
+    public function index(App\Person $person, ListRemoteLicenseClientInterface $client): Response { ... }
     public function create(): Response { ... }    
     public function edit(): Response { ... }
     public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
@@ -133,7 +133,7 @@ class RemoteLicenseController extends Controller
 ```php
 class RemoteLicenseController extends Controller
 {
-    public function index(App\Person $person, ListRemoteLicensesClientInterface $client): Response { ... }
+    public function index(App\Person $person, ListRemoteLicenseClientInterface $client): Response { ... }
     public function create(): Response { ... }    
     public function edit(): Response { ... }
     public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }

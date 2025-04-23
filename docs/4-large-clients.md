@@ -107,7 +107,7 @@ class PersonClient implements
 namespace \App\Clients\Microsoft;
   
 class LicenseClient implements
-    ListRemoteLicensesClientInterface,
+    ListRemoteLicenseClientInterface,
     EditRemoteLicenseClientInterface { 
       
     public function getLicensesForPerson(Person $person): array {
