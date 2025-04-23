@@ -9,61 +9,35 @@ class Microsoft implements
     ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { 
     
-    public function getPeopleInGroup(Group $group): array {
-        ...
-    }
+    public function getPeopleInGroup(Group $group): array { ... }
     
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
+    public function createPerson(PersonDto $person): Person { ... }
     
-    public function deletePerson(PersonDto $person): bool {
-        ...
-    }
+    public function deletePerson(PersonDto $person): bool { ... }
     
-    public function updatePerson(PersonDto $person): bool {
-        ...
-    }    
+    public function updatePerson(PersonDto $person): bool { ... }    
     
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
+    public function createPerson(PersonDto $person): Person { ... }
     
-    public function deletePerson(PersonDto $person): bool {
-        ...
-    }
+    public function deletePerson(PersonDto $person): bool { ... }
     
-    public function updatePerson(PersonDto $person): bool {
-        ...
-    }    
+    public function updatePerson(PersonDto $person): bool { ... }    
     
-    public function getLicensesForPerson(Person $person): array {
-        ...
-    }    
+    public function getLicensesForPerson(Person $person): array { ... }    
     
-    public function createLicense(LicenseDto $license): License {
-        ...
-    }
+    public function createLicense(LicenseDto $license): License { ... }
     
-    public function deleteLicense(LicenseDto $license): bool {
-        ...
-    }
+    public function deleteLicense(LicenseDto $license): bool { ... }
     
-    public function updateLicense(LicenseDto $license): boo {
-        ...
-    }
+    public function updateLicense(LicenseDto $license): bool { ... }
           
-    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool {
-        ...
-    }
+    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool { ... }
     
-    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool {
-        ...
-    }
+    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool { ... }
 }
 ```
 
-That is one long class. You might want to separate them as such:
+That is one long class. You might want to separate this one client by subject:
 
 
 ```php
@@ -73,33 +47,19 @@ class PersonClient implements
     ListRemotePersonClientInterface,
     EditRemoteLicenseClientInterface { 
     
-    public function getPeopleInGroup(Group $group): array {
-        ...
-    }
+    public function getPeopleInGroup(Group $group): array { ... }
     
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
+    public function createPerson(PersonDto $person): Person { ... }
     
-    public function deletePerson(PersonDto $person): bool {
-        ...
-    }
+    public function deletePerson(PersonDto $person): bool { ... }
     
-    public function updatePerson(PersonDto $person): bool {
-        ...
-    }    
+    public function updatePerson(PersonDto $person): bool { ... }    
     
-    public function createPerson(PersonDto $person): Person {
-        ...
-    }
+    public function createPerson(PersonDto $person): Person { ... }
     
-    public function deletePerson(PersonDto $person): bool {
-        ...
-    }
+    public function deletePerson(PersonDto $person): bool { ... }
     
-    public function updatePerson(PersonDto $person): bool {
-        ...
-    }    
+    public function updatePerson(PersonDto $person): bool { ... }    
 }
 ```
 
@@ -110,29 +70,17 @@ class LicenseClient implements
     ListRemoteLicenseClientInterface,
     EditRemoteLicenseClientInterface { 
       
-    public function getLicensesForPerson(Person $person): array {
-        ...
-    }    
+    public function getLicensesForPerson(Person $person): array { ... }    
     
-    public function createLicense(LicenseDto $license): License {
-        ...
-    }
+    public function createLicense(LicenseDto $license): License { ... }
     
-    public function deleteLicense(LicenseDto $license): bool {
-        ...
-    }
+    public function deleteLicense(LicenseDto $license): bool { ... }
     
-    public function updateLicense(LicenseDto $license): boo {
-        ...
-    }
+    public function updateLicense(LicenseDto $license): bool { ... }
           
-    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool {
-        ...
-    }
+    public function assignLicenseToPerson(Person $person, LicenseDto $license): bool { ... }
     
-    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool {
-        ...
-    }
+    public function removeLicenseFromPerson(Person $person, LicenseDto $license): bool { ... }
 }
 ```
 

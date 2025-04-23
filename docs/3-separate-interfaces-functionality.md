@@ -121,12 +121,17 @@ class \App\Clients\Afas implements ListRemoteLicenseInterface { ... }
 Controllers can fairly easily\* be updated
 
 ```php
-class RemoteLicenseController extends Controller
+class RemotePersonController extends Controller
 {
-    public function index(App\Person $person, ListRemoteLicenseClientInterface $client): Response { ... }
+    public function index(App\Person $person, ListRemotePersonClientInterface $client): Response { ... }
+    
     public function create(): Response { ... }    
+    
+    public function store(Request $request, EditRemotePersonClientInterface $client): Response { ... }
+    
     public function edit(): Response { ... }
-    public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
+    
+    public function update(Request $request, EditRemotePersonClientInterface $client): Response { ... }
 }
 ```
 
@@ -134,8 +139,13 @@ class RemoteLicenseController extends Controller
 class RemoteLicenseController extends Controller
 {
     public function index(App\Person $person, ListRemoteLicenseClientInterface $client): Response { ... }
+    
     public function create(): Response { ... }    
+    
+    public function store(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
+    
     public function edit(): Response { ... }
+     
     public function update(Request $request, EditRemoteLicenseClientInterface $client): Response { ... }
 }
 ```
