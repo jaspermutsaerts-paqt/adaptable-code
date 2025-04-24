@@ -155,7 +155,7 @@ class RemotePersonControllerTest extends TestCase {
         $groupNotOnRemote = Group::factory()-&gt;createOne(['some_identifier' =&gt; null]);
 
         $this-&gt;get(route('person.group', $groupWithPeople))
-            -&gt;assertSeeInOnrder(['John', 'Jackie']);
+            -&gt;assertSeeInOrder(['John', 'Jackie']);
 
         $this-&gt;get(route('person.group', $otherGroupWithPeople))
             -&gt;assertSee(['James']);
